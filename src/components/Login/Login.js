@@ -37,7 +37,6 @@ const Login = (props) => {
     }
   }, [emailState.isValid, passwordState.isValid])
 
-
   const emailChangeHandler = (event) => {
     dispatchEmailState({ type: "USER_INPUT", val: event.target.value });
   };
@@ -46,15 +45,9 @@ const Login = (props) => {
     dispatchPasswordState({ type: "USER_INPUT", val: event.target.value });
   };
 
-  const validateEmailHandler = () => {
-    dispatchEmailState({ type: "INPUT_BLUR" });
+  const validateEmailHandler = () => { dispatchEmailState({ type: "INPUT_BLUR" });  };
 
-  };
-
-  const validatePasswordHandler = () => {
-    dispatchPasswordState({ type: "INPUT_BLUR" });
-
-  };
+  const validatePasswordHandler = () => { dispatchPasswordState({ type: "INPUT_BLUR" });  };
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -65,8 +58,7 @@ const Login = (props) => {
     <Card className={classes.login}>
       <form onSubmit={submitHandler}>
         <div
-          className={`${classes.control} ${emailState.isValid === false ? classes.invalid : ''
-            }`}
+          className={`${classes.control} ${emailState.isValid === false ? classes.invalid : '' }`}
         >
           <label htmlFor="email">E-Mail</label>
           <input
@@ -78,8 +70,7 @@ const Login = (props) => {
           />
         </div>
         <div
-          className={`${classes.control} ${passwordState.isValid === false ? classes.invalid : ''
-            }`}
+          className={`${classes.control} ${passwordState.isValid === false ? classes.invalid : '' }`}
         >
           <label htmlFor="password">Password</label>
           <input
