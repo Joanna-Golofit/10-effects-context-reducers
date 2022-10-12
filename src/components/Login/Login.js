@@ -9,14 +9,14 @@ const emailReducer = (state, action) => {
   if (action.type === "INPUT_BLUR") { return { value: state.value, isValid: state.value.includes('@') };  }
   return { value: "", isValid: false };
 }
-const emailReducerInitialValue = { value: "", isValid: false };
+const emailReducerInitialValue = { value: "", isValid: null };
 
 const passwordReducer = (state, action) => {
   if (action.type === "PASSWORD_INPUT") { return { value: action.val, isValid: action.val.trim().length > 6 };  }
   if (action.type === "INPUT_BLUR") { return { value: state.value, isValid: state.value.trim().length > 6 };  }
   return { value: "", isValid: false };
 }
-const passwordReducerInitialValue = { value: "", isValid: false };
+const passwordReducerInitialValue = { value: "", isValid: null };
 
 const Login = (props) => {
   // const [enteredPassword, setEnteredPassword] = useState('');
