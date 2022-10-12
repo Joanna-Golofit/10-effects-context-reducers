@@ -12,7 +12,7 @@ const emailReducer = (state, action) => {
 const emailReducerInitialValue = { value: "", isValid: null };
 
 const passwordReducer = (state, action) => {
-  if (action.type === "PASSWORD_INPUT") { return { value: action.val, isValid: action.val.trim().length > 6 };  }
+  if (action.type === "USER_INPUT") { return { value: action.val, isValid: action.val.trim().length > 6 };  }
   if (action.type === "INPUT_BLUR") { return { value: state.value, isValid: state.value.trim().length > 6 };  }
   return { value: "", isValid: false };
 }
@@ -43,7 +43,7 @@ const Login = (props) => {
   };
 
   const passwordChangeHandler = (event) => {
-    dispatchPasswordState({ type: "PASSWORD_INPUT", val: event.target.value });
+    dispatchPasswordState({ type: "USER_INPUT", val: event.target.value });
   };
 
   const validateEmailHandler = () => {
