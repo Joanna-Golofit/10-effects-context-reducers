@@ -16,20 +16,11 @@ const emailReducer = (state, action) => {
 const emailReducerInitialValue = { value: "", isValid: false };
 
 const Login = (props) => {
-  // const [enteredEmail, setEnteredEmail] = useState('');
-  // const [emailIsValid, setEmailIsValid] = useState();
   const [enteredPassword, setEnteredPassword] = useState('');
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
 
   const [emailState, dispatchEmailState] = useReducer(emailReducer, emailReducerInitialValue)
-
-  useEffect(() => {
-    console.log("effect");
-    return () => {
-      console.log("effect cleanup");
-    }
-  });
 
   useEffect(() => {
     // const identifier = setTimeout(() => {
