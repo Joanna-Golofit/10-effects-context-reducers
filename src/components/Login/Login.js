@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useReducer, useRef, useState } from 'react';
 
 import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
@@ -21,7 +21,8 @@ const passwordReducerInitialValue = { value: "", isValid: null };
 
 const Login = (props) => {
   const [formIsValid, setFormIsValid] = useState(false);
-
+  const emailInputRef = useRef();
+  const passwordInputRef = useRef();
   const [emailState, dispatchEmailState] = useReducer(emailReducer, emailReducerInitialValue)
   const [passwordState, dispatchPasswordState] = useReducer(passwordReducer, passwordReducerInitialValue)
 
@@ -52,16 +53,23 @@ const Login = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    props.onLogin(emailState.value, passwordState.value);
+    if (formIsValid) {
+
+      props.onLogin(emailState.value, passwordState.value);
+    } else if (!emailState.isValid){
+      emailInputRef.current.focus();
+    } else {
+      passwordInputRef.current.focus();
+    }
   };
 
   return (
     <Card className={classes.login}>
       <form onSubmit={submitHandler}>
-        <Input isValid={emailState.isValid} id="email" label="E-mail" type="email" value={emailState.value} onChange={emailChangeHandler} onBlur={validateEmailHandler} />
-        <Input isValid={passwordState.isValid} id="password" label="Password" type="password" value={passwordState.value} onChange={passwordChangeHandler} onBlur={validatePasswordHandler} />
+        <Input ref={emailInputRef} isValid={emailState.isValid} id="email" label="E-mail" type="email" value={emailState.value} onChange={emailChangeHandler} onBlur={validateEmailHandler} />
+        <Input ref={passwordInputRef} isValid={passwordState.isValid} id="password" label="Password" type="password" value={passwordState.value} onChange={passwordChangeHandler} onBlur={validatePasswordHandler} />
         <div className={classes.actions}>
-          <Button type="submit" className={classes.btn} disabled={!formIsValid}>
+          <Button type="submit" className={classes.btn}>
             Login
           </Button>
         </div>
